@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  note:
+    container_name: note
+    build:
+      context: ./note
+      dockerfile: Dockerfile
+    command: npm start
+    volumes:
+      - ./note:/usr/src/app
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "3000:3000"
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: notesdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./data/db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    
+volumes:
+  data:

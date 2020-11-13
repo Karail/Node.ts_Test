@@ -1,0 +1,1 @@
+export { SharedNote } from './shared-note.model';

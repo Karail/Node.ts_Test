@@ -1,0 +1,1 @@
+export { SharedNoteDto } from './shared-note.dto';
