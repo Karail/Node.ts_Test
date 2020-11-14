@@ -73,6 +73,11 @@ class AuthController {
     		logger.error(ex.message);
     		res.status(500).send(ex);
     	}
-    }
+	}
+	@Bind
+    public async logout(req: Request, res: Response) {
+		req.logout();
+		res.send(true);
+	}
 }
 export default new AuthController(User);

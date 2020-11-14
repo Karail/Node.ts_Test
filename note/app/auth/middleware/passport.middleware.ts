@@ -15,7 +15,7 @@ passport.deserializeUser(async (id, done) => {
 	try {
 		const user = await User.findOne({ where: { id } });
 		if (user) {
-			return done(null, user);
+			return done(null, user.get());
 		} else {
 			throw Error('user is not fined');
 		}

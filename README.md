@@ -1,42 +1,46 @@
-REST ful API - CRUD Coupons
+RESTful API - Notes
 
-1. Заполнить .env файл в /coupon
+1. Заполнить .env файл в /note
 
 2. Запустить командой "docker-compose up"
 
-3. swagger документация находится по адресу http://localhost:3000/docs
-
 4. Зарегистрировать пользователя, получить JWT (
-    При запросе к купонам необходимо вложить JWT в Header->Authorization->"Bearer JWT". 
-    В swagger в поле авторизации записать "Bearer JWT")
+    При запросе к notes необходимо вложить JWT в Header->Authorization->"Bearer JWT".
     - http://localhost:8080/auth/auth0/login (auth0)
-    - http://localhost:8080/auth/register (default)
+    - http://localhost:8080/auth/register (jwt)
     - Поля {
         - email: string
         - name: string
         - password: string
     }
 
-5. Создать купон
-    - http://localhost:3000/coupon/ (POST)
+5. Создать note
+    - http://localhost:3000/note/ (POST)
     - Поля {
-        - feedId: string
-        - name: string
-        - icon: File (Image)
+        - content: string (max length 1000)
     }
 
-6. Изменить купон по id
-    - http://localhost:3000/coupon/:id (PUT)
+6. Изменить note по id
+    - http://localhost:3000/note/:id (PUT)
     - Поля {
-        - feedId: string
-        - name: string
-        - icon: File (Image)
+        - content: string (max length 1000)
     }
 
-7. Найти купон по id
-    - http://localhost:3000/coupon/:id (GET)
+7. Найти note по id
+    - http://localhost:3000/note/:id (GET)
     
 8. Найти все купоны 
-    - http://localhost:3000/coupon/ (GET)
+    - http://localhost:3000/note/ (GET)
 
-9. Логи ошибок попадают в app/log/app.log 
+9. Создать (Активировать) общую ссылку на note
+    - http://localhost:3000/note/shared (POST)
+        - Поля {
+        - noteId: number
+    }
+9. Дизактивировать общую ссылку на note
+    - http://localhost:3000/note/shared/disabled (PUT)
+        - Поля {
+        - noteId: number
+    }
+10. Общая ссылка на note
+    - http://localhost:3000/note/shared/:id (GET)

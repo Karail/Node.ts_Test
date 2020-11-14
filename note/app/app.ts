@@ -6,13 +6,13 @@ import cors from 'cors';
 import morgan from 'morgan';
 import session from 'express-session';
 import redisConnect from 'connect-redis';
-import redis from 'redis';
 //Routes
 import noteRouter from './note/note.route';
 import sharedNoteRouter from './shared-note/shared-note.route';
 import authRouter from './auth/auth.route';
 //Connect database
 import { sequelize } from './database/database';
+import { client } from './database/redis';
 //Passport
 import passport from './auth/middleware/passport.middleware';
 //Logger
@@ -39,12 +39,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //Sessions:
-const client = redis.createClient({
-	host: process.env.REDIS_HOST,
-	port: +process.env.REDIS_PORT,
-});
 const RedisStore = redisConnect(session);
-
 app.use(
 	session({
 		store: new RedisStore({

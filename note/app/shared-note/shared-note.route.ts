@@ -6,8 +6,8 @@ import passport from '../auth/middleware/passport.middleware';
 
 const router = Router();
 
-router.post('/', passport.authenticate('jwt', { session: false }), sharedNoteController.create);
-router.put('/disabled', passport.authenticate('jwt', { session: false }), sharedNoteController.disabled);
+router.post('/', passport.authenticate('jwt'), sharedNoteController.create);
+router.put('/disabled', passport.authenticate('jwt'), sharedNoteController.disabled);
 router.get('/:id', sharedNoteController.findOne);
 
 export default router;

@@ -9,7 +9,7 @@ export const jwtStrategy = new JwtStrategy({
 	try {
 		const candidate = await User.findOne({ where: { id: payload.id } });
 		if (candidate) {
-			return done(null, candidate);
+			return done(null, candidate.get());
 		} else {
 			throw Error('user is not fined');
 		}
