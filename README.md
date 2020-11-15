@@ -6,8 +6,8 @@ RESTful API - Notes
 
 4. Зарегистрировать пользователя, получить JWT (
     При запросе к notes необходимо вложить JWT в Header->Authorization->"Bearer JWT".
-    - http://localhost:8080/auth/auth0/login (auth0)
-    - http://localhost:8080/auth/register (jwt)
+    - http://localhost:3000/auth/auth0/login (auth0)
+    - http://localhost:3000/auth/register (jwt)
     - Поля {
         - email: string
         - name: string
